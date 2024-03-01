@@ -1,6 +1,10 @@
 <script>
 	setInterval(getDate, 1000);
 
+	let visible_menu = false;
+	let bg_color = '#d1d1d1';
+	let txt_color = '#000000';
+
 	let month = 0;
 	let day = 0;
 	let hour = 0;
@@ -37,23 +41,71 @@
 			minute = String(minute_num);
 		}
 	}
+
+	function toggleMenu() {
+		const menu = document.getElementById('menu');
+		if (menu != null && visible_menu) {
+			menu.hidden = false;
+			visible_menu = false;
+		} else if (menu != null && !visible_menu) {
+			menu.hidden = true;
+			visible_menu = true;
+		}
+	}
 </script>
 
-<div class="container">
-	<div class="calendar">
-		<div class="month"><p>{month}</p></div>
-		<div class="day"><p>{day}</p></div>
-		<div class="weekday"><p>{weekday}</p></div>
+<svelte:body style="background: blue" />
+
+<div class="menu-container">
+	<button on:click={toggleMenu}>settings</button>
+	<div id="menu" class="menu" hidden={visible_menu}>
+		<div>
+			<p>background</p>
+			<input type="color" bind:value={bg_color} />
+		</div>
+		<div>
+			<p>text</p>
+			<input type="color" bind:value={txt_color} />
+		</div>
+	</div>
+</div>
+
+<div style:background-color={bg_color} class="container">
+	<div style:background-color={bg_color} class="calendar">
+		<div class="month"><p style:color={txt_color}>{month}</p></div>
+		<div class="day"><p style:color={txt_color}>{day}</p></div>
+		<div class="weekday"><p style:color={txt_color}>{weekday}</p></div>
 		<div class="time-container">
-			<p class="hour">{hour}</p>
-			<p class="colon">:</p>
-			<p class="minute">{minute}</p>
+			<p style:color={txt_color} class="hour">{hour}</p>
+			<p style:color={txt_color} class="colon">:</p>
+			<p style:color={txt_color} class="minute">{minute}</p>
 		</div>
 	</div>
 </div>
 
 <style>
+	.menu-container {
+		position: absolute;
+		font-family: 'Montserrat', sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	.menu-container button {
+		cursor: pointer;
+		background: transparent;
+		border: none;
+	}
+
+	.menu {
+		width: 20vw;
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+
 	.container {
+		width: 100%;
+		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -64,7 +116,6 @@
 		width: 45vw;
 		height: 45vw;
 		border-radius: 50px;
-		background: #d1d1d1;
 		box-shadow:
 			-20px 20px 60px #b2b2b2,
 			20px -20px 60px #f0f0f0;
