@@ -1,7 +1,7 @@
 <script>
 	setInterval(getDate, 1000);
 
-	let visible_menu = false;
+	let visible_menu = true;
 	let bg_color = '#d1d1d1';
 	let txt_color = '#000000';
 
