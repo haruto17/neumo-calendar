@@ -44,7 +44,11 @@
 		<div class="month"><p>{month}</p></div>
 		<div class="day"><p>{day}</p></div>
 		<div class="weekday"><p>{weekday}</p></div>
-		<div class="time"><p>{hour} : {minute}</p></div>
+		<div class="time-container">
+			<p class="hour">{hour}</p>
+			<p class="colon">:</p>
+			<p class="minute">{minute}</p>
+		</div>
 	</div>
 </div>
 
@@ -115,18 +119,29 @@
 		font-size: 2vw;
 	}
 
-	.time {
+	.time-container {
 		display: flex;
 		justify-content: center;
-		align-items: flex-start;
 		height: 20%;
 		margin-top: 0;
 		margin-bottom: 0;
 	}
 
-	.time p {
+	.time-container p {
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 3vw;
+	}
+
+	.hour {
+		width: 10%;
+	}
+
+	.colon {
+		width: 10%;
+	}
+
+	.minute {
+		width: 10%;
 	}
 </style>
