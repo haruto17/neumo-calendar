@@ -7,7 +7,7 @@
 
 	let month = 0;
 	let day = 0;
-	let hour = 0;
+	let hour = '';
 	let weekday = '';
 	let minute = '';
 
@@ -15,7 +15,6 @@
 		let date = new Date();
 		month = date.getMonth() + 1;
 		day = date.getDate();
-		hour = date.getHours();
 
 		let weekday_num = date.getDay();
 		if (weekday_num == 0) {
@@ -32,6 +31,13 @@
 			weekday = 'Fri';
 		} else if (weekday_num == 6) {
 			weekday = 'Sat';
+		}
+
+		let hour_num = date.getHours();
+		if (hour_num >= 0 && hour_num <= 9) {
+			hour = '0' + String(hour_num);
+		} else {
+			hour = String(hour_num);
 		}
 
 		let minute_num = date.getMinutes();
