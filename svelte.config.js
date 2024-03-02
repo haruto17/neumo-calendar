@@ -1,13 +1,13 @@
 import adapter from '@sveltejs/adapter-static';
 
+const dev = process.argv.include("dev");
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter({
-			fallback: undefined
-		}),
+		adapter: adapter(),
 		paths: {
-			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+			base: dev ? '' : '/neumo-calendar'
 		}
 	}
 };
