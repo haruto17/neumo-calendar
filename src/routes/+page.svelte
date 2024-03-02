@@ -4,12 +4,55 @@
 	let visible_menu = true;
 	let bg_color = '#d1d1d1';
 	let txt_color = '#000000';
+	let shadow_color1 = '#b2b2b2';
+	let shadow_color2 = '#f0f0f0';
+	$: shadow = `-20px 20px 60px ${shadow_color1}, 20px -20px 60px ${shadow_color2}`;
 
 	let month = 0;
 	let day = 0;
 	let hour = '';
 	let weekday = '';
 	let minute = '';
+
+	// if change background color
+	$: {
+		let hex = String(bg_color).replace(/[^0-9a-f]/gi, '');
+		let lum = 0.15;
+		if (hex.length < 6) {
+			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+		}
+		lum = lum || 0;
+
+		let rgb = '#',
+			c,
+			i;
+		for (i = 0; i < 3; i++) {
+			c = parseInt(hex.substr(i * 2, 2), 16);
+			c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
+			rgb += ('00' + c).substr(c.length);
+		}
+		shadow_color1 = rgb;
+	}
+
+	// if change text color
+	$: {
+		let hex = String(bg_color).replace(/[^0-9a-f]/gi, '');
+		let lum = 0.15 * -1;
+		if (hex.length < 6) {
+			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+		}
+		lum = lum || 0;
+
+		let rgb = '#',
+			c,
+			i;
+		for (i = 0; i < 3; i++) {
+			c = parseInt(hex.substr(i * 2, 2), 16);
+			c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
+			rgb += ('00' + c).substr(c.length);
+		}
+		shadow_color2 = rgb;
+	}
 
 	function getDate() {
 		let date = new Date();
@@ -77,7 +120,7 @@
 </div>
 
 <div style:background-color={bg_color} class="container">
-	<div style:background-color={bg_color} class="calendar">
+	<div style:background-color={bg_color} style:box-shadow={shadow} class="calendar">
 		<div class="month"><p style:color={txt_color}>{month}</p></div>
 		<div class="day"><p style:color={txt_color}>{day}</p></div>
 		<div class="weekday"><p style:color={txt_color}>{weekday}</p></div>
