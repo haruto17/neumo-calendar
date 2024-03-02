@@ -108,11 +108,11 @@
 <div class="menu-container">
 	<button on:click={toggleMenu} style:color={txt_color}>settings</button>
 	<div id="menu" class="menu" hidden={visible_menu}>
-		<div>
+		<div class="menu-content">
 			<p style:color={txt_color}>background</p>
 			<input type="color" bind:value={bg_color} />
 		</div>
-		<div>
+		<div class="menu-content">
 			<p style:color={txt_color}>text</p>
 			<input type="color" bind:value={txt_color} />
 		</div>
@@ -148,8 +148,21 @@
 	}
 
 	.menu {
-		width: 20vw;
+		width: 200px;
+		border-radius: 10px;
+		margin: 5px;
+		padding: 5px;
 		background-color: rgba(0, 0, 0, 0.2);
+	}
+
+	.menu-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.menu-content p {
+		width: 60%;
 	}
 
 	.container {
