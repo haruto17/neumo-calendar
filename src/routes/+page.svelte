@@ -134,6 +134,8 @@
 
 <style>
 	.menu-container {
+		margin-top: 5px;
+		margin-left: 5px;
 		position: absolute;
 		font-family: 'Montserrat', sans-serif;
 		font-optical-sizing: auto;
@@ -142,6 +144,7 @@
 	}
 
 	.menu-container button {
+		font-family: inherit;
 		cursor: pointer;
 		background: transparent;
 		border: none;
